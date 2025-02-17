@@ -1,0 +1,13 @@
+FROM python:3.13-slim AS builder
+ARG POETRY_VERSION=latest
+ENV POETRY_HOME=/opt/poetry
+ENV POETRY_VIRTUALENVS_IN_PROJECT=1
+ENV POETRY_VIRTUALENVS_CREATE=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV POETRY_CACHE_DIR=/opt/.cache
+RUN if [ "${POETRY_VERSION}" = "latest" ]; then     pip install poetry;     else     pip install "poetry==${POETRY_VERSION}";     fi
+
+WORKDIR /app
+RUN rm -rf $POETRY_CACHE_DIR
+ENTRYPOINT ["bash"]
