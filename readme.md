@@ -4,14 +4,16 @@
 
 便于dockerfile内使用
 
+添加xiaozhi dockerfile 适用于带ffmpeg和opus环境的开发
+
 ## 使用
 
-ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_2.1
+ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest
 
 示例：
 
 ```dockerfile
-FROM ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_2.1 AS builder
+FROM ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest AS builder
 
 WORKDIR /app
 
@@ -71,12 +73,15 @@ sudo chmod 777 build_push.sh
 
 ### 编译命令
 
-docker build -t ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_2.1 .
+docker build -t ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest .
 
 ### 运行命令
 
-docker run -it ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_2.1
+docker run -it ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest
 
 ### 推送
 
-docker push ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_2.1
+docker push ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest
+
+## 编译&推送
+docker buildx build --platform linux/amd64,linux/arm64 -t ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_xiaozi --push .
