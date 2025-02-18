@@ -46,17 +46,19 @@ CMD ["python", "main.py"]
 #### 仅传入python版本
 
 ```sh
-./build_and_push.sh 3.10
+./build_push.sh 3.10
 ```
 
 #### 更新多个py版本
 
-./build_and_push.sh 3.10 && ./build_and_push.sh 3.11 && ./build_and_push.sh 3.12 && ./build_and_push.sh 3.13
+```sh
+./build_push.sh 3.10 && ./build_push.sh 3.11 && ./build_push.sh 3.12 && ./build_push.sh 3.13
+```
 
 #### 传入poetry版本
 
 ```sh
-./build_and_push.sh 3.10 2.1
+./build_push.sh 3.10 2.1
 ```
 
 #### 权限不足
