@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 定义仓库和镜像名称的前缀
-REPOSITORY="ccr.ccs.tencentyun.com/kalicyh/poetry"
+REPOSITORY="ghcr.io/kalicyh/poetry"
 
 # 检查输入的参数
 if [ "$#" -lt 1 ]; then

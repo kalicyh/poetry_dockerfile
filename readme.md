@@ -8,12 +8,12 @@
 
 ## 使用
 
-ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest
+kalicyh/poetry:v3.10_latest
 
 示例：
 
 ```dockerfile
-FROM ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest AS builder
+FROM kalicyh/poetry:v3.10_latest AS builder
 
 WORKDIR /app
 
@@ -73,15 +73,19 @@ sudo chmod 777 build_push.sh
 
 ### 编译命令
 
-docker build -t ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest .
+docker build -t kalicyh/poetry:v3.10_latest .
 
 ### 运行命令
 
-docker run -it ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest
+docker run -it kalicyh/poetry:v3.10_latest
 
 ### 推送
 
-docker push ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_latest
+docker push kalicyh/poetry:v3.10_latest
 
 ## 编译&推送
-docker buildx build --platform linux/amd64,linux/arm64 -t ccr.ccs.tencentyun.com/kalicyh/poetry:v3.10_xiaozi --push .
+docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile.xiaozhi -t ghcr.io/kalicyh/poetry:v3.10_xiaozhi --push .
+
+docker buildx build --platform linux/amd64,linux/arm64 -f Dockerfile.xiaozhi.node -t ghcr.io/kalicyh/node:v18-alpine --push .
+
+docker buildx build --platform linux/amd64,linux/arm64 -t ghcr.io/kalicyh/xiaozhi-esp32-server:v2.18 --push .
