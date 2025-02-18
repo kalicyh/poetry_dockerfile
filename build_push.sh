@@ -46,23 +46,12 @@ RUN rm -rf \$POETRY_CACHE_DIR
 ENTRYPOINT ["bash"]
 EOF
 
-# 使用 buildx 构建多架构镜像
-# 注意：添加 --platform 参数以指定多个架构，示例包括 amd64（x86_64）和 arm64
-docker buildx build --platform linux/amd64,linux/arm64 -t ${IMAGE_NAME} .
+# 使用 buildx 构建并推送多架构镜像
+docker buildx build --platform linux/amd64,linux/arm64 -t ${IMAGE_NAME} --push .
 
-# 检查构建是否成功
+# 检查构建和推送是否成功
 if [ $? -eq 0 ]; then
-    echo "构建成功！现在开始推送镜像..."
-
-    # 执行 Docker 推送命令
-    docker buildx build --push --platform linux/amd64,linux/arm64 -t ${IMAGE_NAME} .
-
-    # 检查推送是否成功
-    if [ $? -eq 0 ]; then
-        echo "镜像推送成功！"
-    else
-        echo "镜像推送失败！"
-    fi
+    echo "镜像构建并推送成功！"
 else
-    echo "构建失败！"
+    echo "构建或推送失败！"
 fi
